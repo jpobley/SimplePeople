@@ -1,0 +1,81 @@
+<h1>Instructions for the SimplePeople Plugin</h1>
+
+<h2>About</h2>
+
+<p>The SimplePeople plugin allows people connected to a site to be easily listed on a page. Information can be pulled from profiles or overidden in the shortcode.</p>
+
+<h2>Usage</h2>
+
+<p>For each person you wish to list on the page, start with an enclosing tag like this:<pre><code>[simpleperson][/simpleperson]</code></pre>But don't just leave it like that. Otherwise, nothing will show up on the page.</p>
+<p>Each parameter that is available has the following format:
+<pre>
+<code>key="value"</code>
+</pre>
+Note that the value (the bit on the right) mus be enclosed in the quotes. The key (the bit on the left) does not need quotes.</p>
+
+<h3>Registered Users</h3>
+
+<p>If a person is a resgistered user of the your site, it's best to allow them to fill out their own information and upload their own user photo via their profile page. For each registered person you can add a shortcode to the page like this:
+
+<pre>
+<code>[simpleperson username="someone"][/simpleperson]</code>
+<code>[simpleperson username="someoneElse"][/simpleperson]</code>
+<code>[simpleperson username="anotherSomeone"][/simpleperson]</code>
+</pre>
+
+Notice that all you need is their username. The plugin looks for information in the database and their profile based on the username.
+</p>
+
+<h3>Unregistered users</h3>
+
+<p>If the person is not a registered user of your site (does not have a username), you can still add them to the page with a shortcode and some extra parameters. The following parameters are available to use:
+
+<ul>
+    <li><h4>photo_url</h4>
+            <ul>
+                <li>Description: This is the full url to wherever the person's picture is. It can be on your site or elsewhere. If you have installed and activated the <a href="http://wordpress.org/plugins/easy-author-image/" title="Easy Author Image" target="_blank">Easy Author Image</a> plugin, the SimplePeople plugin will look for that when querying the database.</li>
+                <li>Example value: <code>http://just.another.wordpress.site/wp-content/uploads/2013/08/picture.jpg</code></li>
+                <li>Usage: <code>[simpleperson photo_url="http://31.media.tumblr.com/tumblr_m4h8jerwVx1qf46n3o1_400.jpg"][/simpleperson]</code></li>
+            </ul>
+    </li>
+    <li><h4>tel_num</h4>
+            <ul>
+                <li>Description:  The person's phone number. The plugin does not format this entry, so please format it correctly.</li>
+                <li>Example value: (123) 456-7890</li>
+                <li>Usage: [simpleperson tel_num="(123) 456-7890"][/simpleperson]</li>
+            </ul>
+    </li>
+    <li><h4>office_num</h4>
+            <ul>
+                <li>Description:  The person's office location</li>
+                <li>Example value: 1322 Randall Hall</li>
+                <li>Usage: [simpleperson office_num="1322 Randall Hall"][/simpleperson]</li>
+            </ul>
+    </li>
+    <li><h4>email_addr</h4>
+            <ul>
+                <li>Description:  The person's preferred email. The plugin does not check for correctly formatted addresses, so please ensure you've entered it correctly.</li>
+                <li>Example value: someone@someplace.com</li>
+                <li>Usage: [simpleperson email_addr="someone@someplace.com"][/simpleperson]</li>
+            </ul>
+    </li>
+    <li><h4>disp_name</h4>
+            <ul>
+                <li>Description:  The person's preferred display name. This is the name that will appear on the "People" page.</li>
+                <li>Example value: Jean-Luc Picard</li>
+                <li>Usage: [simpleperson disp_name="Jean-Luc Picard"][/simpleperson]</li>
+            </ul>
+    </li>
+</ul>
+
+</p>
+
+<p>Additionally, you can put content in between the tags so the person has a small bio. For example:
+    <pre>
+        <code>[simpleperson]Thiis person is awesome.[/simpleperson]</code>
+    </pre>
+</p>
+
+<p>
+    Finally, note that if any parameters are used, they will override any information found in a user's profile. So if the user has an email under their profile, but they'd like to use a different one on the page, you can pass the "email_addr" parameter and override their default one.
+</p>
