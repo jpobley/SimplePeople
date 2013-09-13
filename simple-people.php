@@ -1,8 +1,8 @@
 <?php
 /*
-Plugin Name: SimplePeople
-Plugin URI: https://github.com/jpobley/SimplePeople
-Description: A small plugin that allows for the basic design and ordering of people on a "Team" or "About Us" page.
+Plugin Name: Simple People
+Plugin URI: http://www.github.com/jpobley/simple-people
+Description: A small plugin that allows for the basic design and ordering of people on a "People" or "Team" page.
 Version: 1.0
 Author: JP Obley
 Author URI: http://www.jpobley.com
@@ -48,7 +48,8 @@ function simple_people_function( $atts , $content = null ) {
                              FROM $wpdb->users
                              WHERE user_login = %s", $username);
                                       
-        $person = $wpdb->get_results($q)[0];
+        $person = $wpdb->get_results($q);
+        $person = $person[0];
     
        //Get info from db                 
         $q = $wpdb->prepare("SELECT meta_key, meta_value
@@ -70,23 +71,67 @@ function simple_people_function( $atts , $content = null ) {
             $pic = $person_meta['author_profile_picture']->meta_value;
         }
         else {
-            $pic = "http://placehold.it/500x500";
+            $pic = "http://placehold.it/350x350";
         }
         
         $pic = "<div class='ppl-img'>
-                    <img src='$pic' title='$display_name'/>
-                </div>";
+                     <img src='$pic' title='$display_name'/>
+                     </div>";
                 
         if($person){                   
-            return "<div class='ppl'>" . $pic 
-                                                         . "<p>Email: " . $email
-                                                         . "<br/>Phone: " . $phone
-                                                         . "<br/>Office: " . $office
-                                                         . "</p><p>" 
-                                                         . $bio 
-                                                         . "</p></div>";
+            $div = "<div class='ppl'>" . $pic . "<div class='ppl-name'>$display_name</div>";
+
+            if( $email ){
+                $div .= "<div>Email: $email</div>";
+            }
+
+            if( $tel_num ){
+                $div .= "<div>Phone: $phone</div>";
+            }
+
+            if( $office_num ){
+                $div .= "<div>Office: $office_num</div>";
+            }
+
+            if( $bio ){
+                $div .= "<div class='ppl-bio'>$bio</div>";
+            }
+
+            $div .= "</div>";
+
+            return $div;
         }
 
+    }
+    else if ( !$username && $disp_name ){
+
+        $pic = $photo_url ? $photo_url : "http://placehold.it/350x350";
+        
+        $pic = "<div class='ppl-img'>
+                     <img src='$pic' title='$disp_name'/>
+                     </div>";
+         
+        $div = "<div class='ppl'>" . $pic . "<div class='ppl-name'>$disp_name</div>";
+
+        if( $email_addr ){
+            $div .= "<div>Email: $email_addr</div>";
+        }
+
+        if( $tel_num ){
+            $div .= "<div>Phone: $tel_num</div>";
+        }
+
+        if( $office_num ){
+            $div .= "<div>Office: $office_num</div>";
+        }
+
+        if( $content ){
+            $div .= "<div class='ppl-bio'>$content</div>";
+        }
+
+        $div .= "</div>";
+
+        return $div;
     }
     else {
         return;
@@ -104,8 +149,8 @@ function simple_people_action_links($links, $file) {
     return $links;
 }
 
-function simple_people_instructions_page(){
-    $html = file_get_contents( plugins_url( 'instructions.html', __FILE__) );
+function cnl_people_instructions_page(){
+    $html = file_get_contents( plugins_url( 'simple-people-instructions.html', __FILE__) );
     print $html;
 }
 
