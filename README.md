@@ -99,11 +99,6 @@ Here are some basic CSS rules to get you started:
         margin-bottom: 40px;
         clear: both;
     }
-    .img-circle{
-        -webkit-border-radius: 50%;
-        -moz-border-radius: 50%;
-        border-radius: 50%;
-    }
     .ppl-bio {
         clear: both;
     }
