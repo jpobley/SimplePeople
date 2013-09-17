@@ -75,4 +75,48 @@ Finally, note that if any parameters are used, they will override any informatio
 
    [1]: http://cn.asc.upenn.edu/?page_id=13
    [2]: http://wordpress.org/plugins/easy-author-image/ (Easy Author Image)
-  
+
+## Structure
+
+This is the full DOM structure that is returned from the plugin:
+
+    <div class="ppl">
+        <div class="ppl-img">
+            <img title="JP Obley" src="http://jpobley.com/wp-content/uploads/2013/09/JPFace-287x300.jpg" />
+        </div>
+        <div class="ppl-name">JP Obley</div>
+        <div>Email: jpobley[at]gmail[dot]com</div>
+        <div>Phone: 123-456-7890</div>
+        <div>Office: 123 North Quad</div>
+        <div class="ppl-bio">JP is a humanist with an indefatigable sense of wonder. He also makes a mean guacamole.</div>
+    </div>
+
+## Styling
+
+Here are some basic CSS rules to get you started:
+
+    .ppl {
+        margin-bottom: 40px;
+        clear: both;
+    }
+    .img-circle{
+        -webkit-border-radius: 50%;
+        -moz-border-radius: 50%;
+        border-radius: 50%;
+    }
+    .ppl-bio {
+        clear: both;
+    }
+    .ppl-name {
+        font-weight: bold;
+    }
+    .ppl-img {
+        float: left;
+        margin-right: 20px;
+        margin-bottom: 20px;
+        width: 150px;
+    }
+    .ppl-img img {
+        width: 100%;
+        border: 1px solid #838383;
+    }
